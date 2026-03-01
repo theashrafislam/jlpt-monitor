@@ -9,8 +9,7 @@ export async function GET() {
 
     const html = await response.text();
 
-    // HTML কে clean করে "meaningful text" extract করা
-    // খুব basic strip: remove tags, multiple spaces, newlines
+
     const body = html
       .replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, "")
       .replace(/<style[\s\S]*?>[\s\S]*?<\/style>/gi, "")
