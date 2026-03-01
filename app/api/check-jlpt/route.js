@@ -11,11 +11,21 @@ export async function GET() {
     });
 
     const body = await response.text(); // Full HTML / page content
+    // Strip HTML tags and scripts/styles
+    const stripHTML = html => html
+      .replace(/<script[^>]*>.*?<\/script>/gi, '')
+      .replace(/<style[^>]*>.*?<\/style>/gi, '')
+      .replace(/<[^>]*>/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+
+    const bodyText = stripHTML(body);
+    const summary = bodyText.length > 200 ? bodyText.slice(0, 200) + "..." : bodyText;
 
     return NextResponse.json({
       status: response.status,
       statusText: response.statusText,
-      body, // terminal-এ দেখানোর জন্য
+      body: summary
     });
   } catch (err) {
     return NextResponse.json({
