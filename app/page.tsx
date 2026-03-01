@@ -1,6 +1,7 @@
 "use client";
 import { useState, useRef } from "react";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 import ControlPanel from "./components/ControlPanel";
 import StatsPanel from "./components/StatsPanel";
 import Terminal from "./components/Terminal";
@@ -84,6 +85,8 @@ export default function Home() {
         </div>
         <Terminal logs={logs} />
       </div>
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }
